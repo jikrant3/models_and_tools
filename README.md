@@ -14,4 +14,4 @@ Codes to create and read model files
 - Bergeron WD cooling curves (DA, DB)
 
 ## References
-Some references are given in the info.txt file. Please cite the missing sources on your own.
+Some references are given in the models/info.txt file. Please cite the missing sources on your own.

@@ -13,7 +13,7 @@ Codes to create and read model files
 - ZAMS for various metallicities
 - Bergeron WD cooling curves (DA, DB)
 
-Download the spectral ibraries and synthetic photometry from [here](https://drive.google.com/drive/folders/1UdpMiPVj-q91IpcmcLBmSXmYh_iDgwTq?usp=sharing).
+Download the spectral ibraries and synthetic photometry from [Google Drive](https://drive.google.com/drive/folders/1UdpMiPVj-q91IpcmcLBmSXmYh_iDgwTq?usp=sharing).
 
 ## References
 Some references are given in the models/info.txt file. Please cite the missing sources on your own.

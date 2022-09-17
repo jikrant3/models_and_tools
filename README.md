@@ -1,7 +1,7 @@
 # models_and_tools
 
 ## cheatsheet_and_useful_functions.ipynb
-Collections of small useful code snippets
+Collections of small & useful code snippets
 
 ## creating_model_files.ipynb
 Codes to create and read model files
@@ -12,6 +12,8 @@ Codes to create and read model files
 - Simple isochrone collection (logAge 7,8,9,10)
 - ZAMS for various metallicities
 - Bergeron WD cooling curves (DA, DB)
+
+Download the spectral ibraries and synthetic photometry from [here](https://drive.google.com/drive/folders/1UdpMiPVj-q91IpcmcLBmSXmYh_iDgwTq?usp=sharing).
 
 ## References
 Some references are given in the models/info.txt file. Please cite the missing sources on your own.

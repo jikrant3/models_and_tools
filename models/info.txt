@@ -27,17 +27,22 @@ master_isochrone.csv:
 
 
 master_ZAMS.csv:
-	ZAMS created by stiching following solar metallicity isochrones. (_625, _65 etc. are logAges 6.25, 6.5 etc.)
-    	ZAMS_625   = cl_iso_625[(cl_iso_625.logL < 5.6) & (cl_iso_625.logL >= 3.5)]
-    	ZAMS_65    = cl_iso_65[  (cl_iso_65.logL < 3.5) &  (cl_iso_65.logL >= 3.0)]
-    	ZAMS_675   = cl_iso_675[(cl_iso_675.logL < 3.0) & (cl_iso_675.logL >= 2.5)]
-    	ZAMS_7     = cl_iso_7[    (cl_iso_7.logL < 2.5) &   (cl_iso_7.logL >= 1.4)]
-    	ZAMS_75    = cl_iso_75[  (cl_iso_75.logL < 1.4) &  (cl_iso_75.logL >= 0.9)]
-    	ZAMS_8     = cl_iso_8[    (cl_iso_8.logL < 0.9)]
+	ZAMS created by stiching following solar metallicity isochrones:
+    	logAge 6.25  5.6 > logL > 3.5
+    	logAge 6.5   3.5 > logL > 3.0
+    	logAge 6.75  3.0 > logL > 2.5
+    	logAge 7.    2.5 > logL > 1.4
+    	logAge 7.5   1.4 > logL > 0.9
+    	logAge 8.    0.9 > logL
 
 
 koester_spectral_library.nc:
+	These models are for white dwarfs of spectral type DA with pure hydrogen atmospheres. They use LTE (local thermodynamic equilibrium), hydrostatic equilibrium and plane-parallel, one-dimensional structure. Basic methods and data are described in Koester (2010, Mem.S.A.It. Vol. 81, 921). Since then many improvements were implemented, most notably the hydrogen Stark profiles by Tremblay & Bergeron (2009, ApJ 696,1755), and Tremblay (2015, priv. comm).
+Original models have been transformed to air wavelengths and rescaled to 4p*Eddington flux in erg/cm2/s/A.
+	Koester, D. 2010; MSAI 81, 921
+	Trembley & Bergeron 2010, ApJ696, 1755
 	Koester WD spectra interpolated for logWavelength of (2.954, 4.476) with steps of 0.001. Saved as xarray with following structure.
+
 	<xarray.DataArray (Wavelength: 1523, Te: 82, logg: 13)>
 	[1623518 values with dtype=float64]
 	Coordinates:
@@ -50,20 +55,26 @@ koester_spectral_library.nc:
 
 koester_synthetic_photometry.nc:
 	Koester synthetic photometry in 8102 filters
-	<xarray.DataArray (FilterID: 8102, Te: 82, logg: 13)>
-	[8636732 values with dtype=float64]
+
+	<xarray.DataArray (FilterID: 8162, Te: 82, logg: 13)>
+	[8700692 values with dtype=float64]
 	Coordinates:
 	  * FilterID  (FilterID) object 'IUE/IUE.1250-1300' ... 'QUIJOTE/MFI.11GHz_H3'
-	  * Te        (Te) int64 5000 5250 5500 5750 6000 ... 50000 60000 70000 80000
+	  * Te        (Te) int32 5000 5250 5500 5750 6000 ... 50000 60000 70000 80000
 	  * logg      (logg) float64 6.5 6.75 7.0 7.25 7.5 ... 8.5 8.75 9.0 9.25 9.5
 	Attributes:
-	    Wavelengths:  [1.28470318e+03 1.35608150e+03 1.35899193e+03 ... 3.8683349...
+	    Wavelengths:  [1.28470318e+03 1.35336435e+03 1.35623969e+03 ... 3.8683349...
 	    unit:         erg/s/cm2/A
 	    long_name:    Flux
 
 
 kurucz_spectral_library.nc:
+	ATLAS9 Kurucz ODFNEW /NOVER models. Newly computed ODFs with better opacities and better abundances have been used.
+	Castelli and Kurucz 2003, IAUS 210, A20
+	Castelli and Kurucz Atlas (https://www.stsci.edu/hst/instrumentation/reference-data-for-calibration-and-tools/astronomical-catalogs/castelli-and-kurucz-atlas)
+	Castelli ATLAS9 grids web page (https://wwwuser.oats.inaf.it/castelli/grids.html)
 	Kurucz spectra interpolated for logWavelength of (2.608 6.204) with steps of 0.001. Saved as xarray with following structure.
+	
 	<xarray.DataArray (Wavelength: 3597, Te: 76, logg: 11, MH: 9, alpha: 2)>
 	[54127656 values with dtype=float64]	Coordinates:
 	  * Wavelength  (Wavelength) float64 405.5 406.4 407.4 ... 1.596e+06 1.6e+06
@@ -78,16 +89,17 @@ kurucz_spectral_library.nc:
 
 kurucz_synthetic_photometry.nc:
 	Kurucz synthetic photometry in 8174 filters
-	<xarray.DataArray (FilterID: 8147, Te: 76, logg: 11, MH: 9, alpha: 2)>
-	[122596056 values with dtype=float64]
+
+	<xarray.DataArray (FilterID: 8162, Te: 76, logg: 11, MH: 9, alpha: 2)>
+	[122821776 values with dtype=float64]
 	Coordinates:
-	  * FilterID  (FilterID) object 'IUE/IUE.1250-1300' ... 'QUIJOTE/MFI.11GHz_H3'
+	* FilterID  (FilterID) object 'Swift/UVOT.UVM2_fil' ... 'QUIJOTE/MFI.11GHz_H3'
 	  * Te        (Te) int32 3500 3750 4000 4250 4500 ... 47000 48000 49000 50000
 	  * logg      (logg) float64 0.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0
 	  * MH        (MH) float64 -2.5 -2.0 -1.5 -1.0 -0.5 0.0 0.2 0.5 -4.0
 	  * alpha     (alpha) float64 0.0 0.4
 	Attributes:
-	    Wavelengths:  [1.28470318e+03 1.35336435e+03 1.35623969e+03 ... 3.8683349...
+	    Wavelengths:  [1.19128077e+00 1.24254209e+00 1.48134125e+02 ... 3.8683349...
 	    unit:         erg/s/cm2/A
 	    long_name:    Flux
 

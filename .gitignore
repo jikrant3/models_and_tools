@@ -1,3 +1,5 @@
 models_individual
 .ipynb_checkpoints
 models/*.nc
+.*
+__pycache*
